@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,12 +14,15 @@
     </head>
     <body>
         <h1>Database Administration - Edit Page</h1>
+        
+        <p>Please input the following data to update the new record</p>
+        
         <form action="" method="post">
-            <label>ID : </label> <input type="text" name="ID"><p>
-            <label>First Name : </label> <input type="text" name="fname"><p>
-            <label>Last Name : </label> <input type="text" name="lname"><p>
-            <label>Birthday : </label><input type="text" name="bday"><p>
-            <label>Salary : </label><input type="text" name="sal"><p>
+            <label>ID : </label> <input type="text" name="ID" value="<%= request.getParameter("ID")%>"><p>
+                <label>First Name : </label> <input type="text" name="fname" value=""><p>
+            <label>Last Name : </label> <input type="text" name="lname" value=""><p>
+            <label>Birthday : </label><input type="text" name="bday" value=""><p>
+            <label>Salary : </label><input type="text" name="sal" value=""><p>
                 <input type="submit" value="Update Record"> <input type="Reset" value="Reset">
         </form>
     </body>

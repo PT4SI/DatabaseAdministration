@@ -20,17 +20,33 @@ public class Empdbcomponent {
         return rs;
     }
 
-    public int insertRecords(Connection conn, Employee emp) throws ClassNotFoundException, SQLException {
-        String query = "INSERT INTO employee VALUES (" + emp.getId() + ",'" + emp.getFirstname()+ "','" + emp.getLastname() + "'," + emp.getBirthdate()+ ")";
-        Statement st = conn.createStatement();
-        int rs = st.executeUpdate(query);
+    public int insertRecords(Connection conn, Employee emp) throws SQLException {
+        //String query = "INSERT INTO employee VALUES (" + emp.getId() + ",'" + emp.getFirstname()+ "','" + emp.getLastname() + "'," + emp.getBirthdate()+ ")";
+        PreparedStatement pst = conn.prepareStatement("INSERT INTO EMPLOYEE VALUES (?,?,?,?,?)");
+        pst.setInt(1, emp.getId());
+        pst.setString(2, emp.getFirstname());
+        pst.setString(3, emp.getLastname());
+        pst.setString(4, emp.getBirthdate());
+        pst.setString(5, emp.getSalary());
+        int rs = pst.executeUpdate();
+        
+        //Statement st = conn.createStatement();
+        //int rs = st.executeUpdate(query);
         return rs;
     }
 
     public int updateRecord(Connection conn, Employee emp) throws ClassNotFoundException, SQLException {
-        String query = "UPDATE employee SET firstname ='" + emp.getFirstname()+ "', lastname = '" + emp.getLastname()+ "' , salary = " + emp.getSalary()+ "  WHERE id = " + emp.getId() + "";
-        Statement st = conn.createStatement();
-        int rs = st.executeUpdate(query);
+        //String query = "INSERT INTO employee VALUES (" + emp.getId() + ",'" + emp.getFirstname()+ "','" + emp.getLastname() + "'," + emp.getBirthdate()+ ")";
+        PreparedStatement pst = conn.prepareStatement("UPDATE EMPLOYEE SET ID =?, FIRSTNAME =? LASTNAME = ?, BIRTHDAY = ?, SALARY =?");
+        pst.setInt(1, emp.getId());
+        pst.setString(2, emp.getFirstname());
+        pst.setString(3, emp.getLastname());
+        pst.setString(4, emp.getBirthdate());
+        pst.setString(5, emp.getSalary());
+        int rs = pst.executeUpdate();
+        
+        //Statement st = conn.createStatement();
+        //int rs = st.executeUpdate(query);
         return rs;
     }
 }

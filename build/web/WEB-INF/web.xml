@@ -8,6 +8,10 @@
         <servlet-name>InsertData</servlet-name>
         <servlet-class>DatabaseServlet.InsertData</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DatabaseServletEdit</servlet-name>
+        <servlet-class>DatabaseServlet.DatabaseServletEdit</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DatabaseServlet</servlet-name>
         <url-pattern>/DatabaseServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>InsertData</servlet-name>
         <url-pattern>/InsertData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DatabaseServletEdit</servlet-name>
+        <url-pattern>/DatabaseServletEdit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

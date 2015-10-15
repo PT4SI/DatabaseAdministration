@@ -36,8 +36,7 @@ public class DatabaseServlet extends HttpServlet {
             out.println("<input type=\"submit\" value=\"Insert Record\">");
             out.println("</form>");
 
-//Create the Update record button and open “editrecord.jsp”
-            out.println("<form action=\" editrecord.jsp\" method=\"post\">");
+
 
 //Display the table format
             out.println("<table border=\"1\"1>");
@@ -51,9 +50,12 @@ public class DatabaseServlet extends HttpServlet {
             rs = db.fetchRecords(conn);
 
             while (rs.next()) {
+//Create the Update record button and open “editrecord.jsp”
+            out.println("<form action=\"editrecord.jsp\" method=\"get\">");
 //Display the database record by using tr, td and rs 
-                out.println("<tr><td>");
-                out.println(rs.getString("FIRSTNAME") + "</td>");
+                out.println("<tr>" + "<input type='hidden' name='ID' value='" + rs.getString("ID") + 
+                        "'>");
+                out.println("<td>" + rs.getString("FIRSTNAME") + "</td>");
                 out.println("<td>" + rs.getString("LASTNAME") + "</td>");
                 out.println("<td>" + rs.getString("BIRTHDATE") + "</td>");
                 out.println("<td>" + rs.getString("SALARY") + "</td>");

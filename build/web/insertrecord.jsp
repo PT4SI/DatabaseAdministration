@@ -13,8 +13,8 @@
     </head>
     <body>
         <h1>Lab : Add Record</h1>
-        <form action="" method="post">
-            <label>ID : </label> <input type="text" name="ID"><p>
+        <form action="InsertData" method="post">
+            <label>ID : </label> <input type="text" name="id"><p>
             <label>First Name : </label> <input type="text" name="fname"><p>
             <label>Last Name : </label> <input type="text" name="lname"><p>
             <label>Birthday : </label><input type="text" name="bday"><p>

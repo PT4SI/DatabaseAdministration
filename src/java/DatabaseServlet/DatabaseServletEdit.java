@@ -7,7 +7,6 @@ package DatabaseServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ckc
  */
-public class InsertData extends HttpServlet {
+public class DatabaseServletEdit extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +35,10 @@ public class InsertData extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InsertData</title>");
+            out.println("<title>Servlet DatabaseServletEdit</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InsertData at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DatabaseServletEdit at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,6 +57,7 @@ public class InsertData extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**
@@ -71,30 +71,7 @@ public class InsertData extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        PrintWriter pw = response.getWriter();
-        String connectionURL = "jdbc:derby://localhost:1527/EmployeeDB";//
-        Connection connection;
-        int id = Integer.parseInt(request.getParameter("id"));
-        String firstname = request.getParameter("fname");
-        String lastname = request.getParameter("lname");
-        String birthday = request.getParameter("bday");
-        String salary = request.getParameter("salary");
-
-        try {
-            connection = DriverManager.getConnection(connectionURL, "root", "root");
-//Use Empdbcomponent class to insert data
-            Empdbcomponent db = new Empdbcomponent();
-            Employee emp = new Employee(id, firstname, lastname, birthday, salary);
-            int i = db.insertRecords(connection, emp);
-            if (i != 0) {
-                pw.println("<br>Record has been inserted");
-            } else {
-                pw.println("failed to insert the data");
-            }
-        } catch (Exception e) {
-            pw.println(e);
-        }
+        processRequest(request, response);
     }
 
     /**
