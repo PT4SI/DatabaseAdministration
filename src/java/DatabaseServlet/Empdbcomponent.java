@@ -37,12 +37,12 @@ public class Empdbcomponent {
 
     public int updateRecord(Connection conn, Employee emp) throws ClassNotFoundException, SQLException {
         //String query = "INSERT INTO employee VALUES (" + emp.getId() + ",'" + emp.getFirstname()+ "','" + emp.getLastname() + "'," + emp.getBirthdate()+ ")";
-        PreparedStatement pst = conn.prepareStatement("UPDATE EMPLOYEE SET ID =?, FIRSTNAME =? LASTNAME = ?, BIRTHDAY = ?, SALARY =?");
-        pst.setInt(1, emp.getId());
-        pst.setString(2, emp.getFirstname());
-        pst.setString(3, emp.getLastname());
-        pst.setString(4, emp.getBirthdate());
-        pst.setString(5, emp.getSalary());
+        PreparedStatement pst = conn.prepareStatement("UPDATE EMPLOYEE SET FIRSTNAME= ? , LASTNAME= ?, BIRTHDATE= ?, SALARY= ? where ID= ?");
+        pst.setString(1, emp.getFirstname());
+        pst.setString(2, emp.getLastname());
+        pst.setString(3, emp.getBirthdate());
+        pst.setString(4, emp.getSalary());
+        pst.setInt(5, emp.getId());
         int rs = pst.executeUpdate();
         
         //Statement st = conn.createStatement();

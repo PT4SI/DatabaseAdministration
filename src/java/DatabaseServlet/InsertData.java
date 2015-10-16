@@ -79,7 +79,7 @@ public class InsertData extends HttpServlet {
         String firstname = request.getParameter("fname");
         String lastname = request.getParameter("lname");
         String birthday = request.getParameter("bday");
-        String salary = request.getParameter("salary");
+        String salary = request.getParameter("sal");
 
         try {
             connection = DriverManager.getConnection(connectionURL, "root", "root");
@@ -88,7 +88,7 @@ public class InsertData extends HttpServlet {
             Employee emp = new Employee(id, firstname, lastname, birthday, salary);
             int i = db.insertRecords(connection, emp);
             if (i != 0) {
-                pw.println("<br>Record has been inserted");
+                pw.println("<br>Record has been inserted <p><a href=\"./\">Back</a>");
             } else {
                 pw.println("failed to insert the data");
             }

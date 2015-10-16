@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.*;
 
 /**
  *
@@ -71,7 +72,30 @@ public class DatabaseServletEdit extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        PrintWriter pw = response.getWriter();
+        String connectionURL = "jdbc:derby://localhost:1527/EmployeeDB";//
+        Connection connection;
+        int id = Integer.parseInt(request.getParameter("ID"));
+        String firstname = request.getParameter("fname");
+        String lastname = request.getParameter("lname");
+        String birthday = request.getParameter("bday");
+        String salary = request.getParameter("sal");
+
+        try {
+            connection = DriverManager.getConnection(connectionURL, "root", "root");
+//Use Empdbcomponent class to insert data
+            Empdbcomponent db = new Empdbcomponent();
+            Employee emp = new Employee(id, firstname, lastname, birthday, salary);
+            int i = db.updateRecord(connection, emp);
+            if (i != 0) {
+                pw.println("<br>Record has been updated <p><a href=\"./\">Back</a> ");
+            } else {
+                pw.println("failed to update the data");
+            }
+        } catch (Exception e) {
+            pw.println(e);
+        }
     }
 
     /**

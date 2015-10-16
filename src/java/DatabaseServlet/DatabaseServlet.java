@@ -51,10 +51,10 @@ public class DatabaseServlet extends HttpServlet {
 
             while (rs.next()) {
 //Create the Update record button and open “editrecord.jsp”
-            out.println("<form action=\"editrecord.jsp\" method=\"get\">");
+            out.println("<form action=\"editrecord.jsp\" method=\"post\">");
 //Display the database record by using tr, td and rs 
-                out.println("<tr>" + "<input type='hidden' name='ID' value='" + rs.getString("ID") + 
-                        "'>");
+                out.println("<tr>" + 
+                        "<input type='hidden' name='ID' value='" + rs.getString("ID") + "'>" + "<input type='hidden' name='fname' value='" + rs.getString("FIRSTNAME")+ "'>"+ "<input type='hidden' name='lname' value='" + rs.getString("LASTNAME")+ "'>"+ "<input type='hidden' name='bday' value='" + rs.getString("BIRTHDATE")+ "'>"+ "<input type='hidden' name='sal' value='" + rs.getString("SALARY")+ "'>");
                 out.println("<td>" + rs.getString("FIRSTNAME") + "</td>");
                 out.println("<td>" + rs.getString("LASTNAME") + "</td>");
                 out.println("<td>" + rs.getString("BIRTHDATE") + "</td>");
